@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>{{ subtitle }}</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Image File</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in items %}
+        <tr>
+            <td>{{ item.id }}</td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.image_path }}</td>
+            <td>{{ item.price }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>
+                <button class="btn-edit" 
+                    data-id="{{ item.id }}"
+                    data-name="{{ item.name }}"
+                    data-image="{{ item.image_path }}"
+                    data-price="{{ item.price }}"
+                    data-quantity="{{ item.quantity }}">
+                    Edit
+                </button>
+                <button class="btn-delete" 
+                    data-id="{{ item.id }}"
+                    data-text="{{ item.id }} - {{ item.name }}">
+                    Delete
+                </button>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    <button class="btn-add">Add New</button>
+</table>
+
+<p><a href="/">Return Home</a></p>
+
+<!-- Modal -->
+
+<div id="addModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Add Item</h2>
+    <form id="addForm" method="POST" action="/admin/inventory/add">
+        <label>Name</label><input type="text" name="name" required>
+        <label>Image File</label><input type="text" name="image_path">
+        <label>Price</label><input type="number" step="0.01" name="price" required>
+        <label>Quantity</label><input type="number" name="quantity" required>
+        <button type="submit">Confirm</button>
+    </form>
+  </div>
+</div>
+
+<div id="editModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Edit Item</h2>
+    <form id="editForm" method="POST" action="/admin/inventory/edit">
+        <input type="hidden" name="id" id="edit-id">
+        <label>Name</label><input type="text" name="name" id="edit-name" required>
+        <label>Image File</label><input type="text" name="image_path" id="edit-image">
+        <label>Price</label><input type="number" step="0.01" name="price" id="edit-price" required>
+        <label>Quantity</label><input type="number" name="quantity" id="edit-quantity" required>
+        <button type="submit">Confirm</button>
+    </form>
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="deleteModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Delete Item</h2>
+    <form id="deleteForm" method="POST" action="/admin/inventory/delete">
+        <p id="deleteMessage"></p>
+        <input type="hidden" name="id" id="delete-id">
+        <button type="submit">Confirm</button>
+    </form>
+  </div>
+</div>
+
+<script>
+const addModal = document.getElementById("addModal");
+const addCloseBtn = addModal.querySelector(".close");
+document.querySelectorAll(".btn-add").forEach(btn => {
+    btn.addEventListener("click", () => {
+        addModal.style.display = "block";
+    });
+});
+addCloseBtn.addEventListener("click", () => { addModal.style.display = "none"; });
+window.addEventListener("click", e => { if(e.target == addModal) addModal.style.display = "none"; });
+
+const editModal = document.getElementById("editModal");
+const editCloseBtn = editModal.querySelector(".close");
+document.querySelectorAll(".btn-edit").forEach(btn => {
+    btn.addEventListener("click", () => {
+        document.getElementById("edit-id").value = btn.dataset.id;
+        document.getElementById("edit-name").value = btn.dataset.name;
+        document.getElementById("edit-image").value = btn.dataset.image;
+        document.getElementById("edit-price").value = btn.dataset.price;
+        document.getElementById("edit-quantity").value = btn.dataset.quantity;
+        editModal.style.display = "block";
+    });
+});
+editCloseBtn.addEventListener("click", () => { editModal.style.display = "none"; });
+window.addEventListener("click", e => { if(e.target == editModal) editModal.style.display = "none"; });
+
+const deleteModal = document.getElementById("deleteModal");
+const deleteCloseBtn = deleteModal.querySelector(".close");
+document.querySelectorAll('.btn-delete').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const itemId = btn.dataset.id;
+        const itemText = btn.dataset.text;
+        document.getElementById("delete-id").value = itemId;
+        document.getElementById("deleteMessage").textContent =
+            `Are you sure you want to delete item: ${itemText}?`;
+        deleteModal.style.display = "block";
+    });
+});
+deleteCloseBtn.addEventListener("click", () => { deleteModal.style.display = "none"; });
+window.addEventListener("click", e => { if(e.target == deleteModal) deleteModal.style.display = "none"; });
+</script>
+{% endblock %}
