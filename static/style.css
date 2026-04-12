@@ -116,11 +116,26 @@ ul li:hover {
 }
 
 /* Ensure links inside cards inherit text color */
-ul li a {
+ul li a,
+ul li button {
     color: inherit;
     text-decoration: none;
     font-weight: 500;
     display: block;
+    font: inherit;             /* inherit font size, family */
+    border: none;              /* remove button border */
+    background: none;          /* remove button background */
+    padding: 0;                /* remove button padding */
+    cursor: pointer;           /* pointer cursor for buttons */
+    width: 100%;              /* fills the parent <li> */
+    margin: 0;                /* remove default button margin */
+    text-align: left;         /* align text like links */
+}
+
+ul li a:hover,
+ul li button:hover {
+    color: inherit;            /* maintain inherited color on hover */
+    background: inherit;       /* maintain inherited background on hover */
 }
 
 /* Tables */
@@ -272,3 +287,58 @@ p {
 
 .btn-delete { background-color: #dc2626; color: white; }
 .btn-delete:hover { background-color: #ef4444; }
+
+
+.notification {
+    padding: 12px 20px;
+    margin: 10px 0;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.notification.error {
+    background-color: #ffe5e5; /* light red background */
+    color: #d8000c;           /* dark red text */
+    border: 1px solid #d8000c;
+}
+
+.notification.success {
+    background-color: #e5ffe5; /* light green background */
+    color: #006400;            /* dark green text */
+    border: 1px solid #006400;
+}
+
+
+ul li {
+    background-color: #000000; /* dark gray / almost black */
+    color: #ffffff;            /* white text */
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+
+
+.return-home {
+    /* display: inline-block; */
+    background-color: #4f4f4f;    /* matches your list items */
+    color: #ffffff;               /* white text */
+    padding: 1rem 1.5rem;
+    border-radius: 8px;           /* same as list cards */
+    /* text-decoration: none; */
+    /* font-weight: 500;
+    font-size: 1rem; */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+    /* cursor: pointer; */
+    /* margin: 2rem auto 0; 
+    display: block; 
+    max-width: 200px;  */
+}
+
+.return-home:hover {
+    background-color: #535353;       /* slightly lighter on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}

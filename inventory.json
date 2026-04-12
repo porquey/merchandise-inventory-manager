@@ -1,0 +1,23 @@
+[
+  {
+    "uuid": "550e8400-e29b-41d4-a716-446655440000",
+    "name": "Red T-Shirt",
+    "price": 12.99,
+    "image_path": "images/tshirt_red.png",
+    "quantity": 10
+  },
+  {
+    "uuid": "550e8400-e29b-41d4-a716-446655440001",
+    "name": "Blue Hat",
+    "price": 7.50,
+    "image_path": "images/hat_blue.png",
+    "quantity": 5
+  },
+  {
+    "uuid": "550e8400-e29b-41d4-a716-446655440002",
+    "name": "Green Socks",
+    "price": 4.25,
+    "image_path": null,
+    "quantity": 20
+  }
+]

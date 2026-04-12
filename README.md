@@ -78,10 +78,8 @@ DROP TABLE inventory;
 Add row:
 ```
 INSERT INTO inventory (id, name, price, image_path, quantity) VALUES
-('1', 'Bang Yong Guk', 32.50, 'images/byg.jpeg', 10),
-('2', 'Nothing', 7.50, NULL, 5),
-('3', 'Lemon', 3, 'images/lemon.png', 3),
-('4', 'Watermelon', 9, 'image.watermelon.png', 1);
+('1', 'Nothing', 7.50, NULL, 5),
+('2', 'Lemon', 3, 'lemon.png', 3);
 ```
 
 Delete a row:

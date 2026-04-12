@@ -18,10 +18,10 @@
         <tr>
             <td>{{ item.id }}</td>
             <td><img 
-                src="/static/images/{{ item.image_path }}" 
-                alt=" No Image" 
+                src="/resources/images/{{ item.image_path }}" 
+                alt="No Image" 
                 width="100" 
-                onerror="this.onerror=null; this.src='/static/images/no_image.png'">
+                onerror="this.onerror=null; this.src='/static/no_image.png'">
             </td>
             <td>{{ item.name }}</td>
             <td>{{ item.price }}</td>
@@ -31,5 +31,7 @@
     </tbody>
 </table>
 
-<p><a href="/">Return Home</a></p>
+<ul>
+    <li><a href="/">Return Home</a></li>
+</ul>
 {% endblock %}

@@ -2,6 +2,18 @@
 
 {% block content %}
 <h2>{{ subtitle }}</h2>
-<p>Content for this page goes here...</p>
-<p><a href="/">Return Home</a></p>
+<ul>
+    <li><a href="/admin/inventory-edit">Edit Inventory</a></li>
+    <li>
+        <form action="/logout" method="post" style="display:inline;">
+            <button type="submit">Logout</button>
+        </form>
+    </li>
+</ul>
+
+</ul>
+
+<ul>
+    <li><a href="/">Return Home</a></li>
+</ul>
 {% endblock %}
